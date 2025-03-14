@@ -26,7 +26,7 @@ import { CocktailService } from '../../services/cocktail.service'
 
 export class CocktailComponent implements OnInit {
     // now we need a container for the ingredients. cocktail db returns ingredients as an array of strings. because this is typescript we have to define the type lol thats why we do any []. remember this is an object so we use :
-    ingredients: any[] = [];
+    drinks: any[] = [];
     // we have to remember to handle errors so we give a container for the errors
     errorMessage: string = '';
     // next we need to inject the cocktail service we wrote earlier into this class and we do that with a constructor we do it privately so its only accessible in this class. cocktailService1 is the variable name cocktailService is the class we want to inject
@@ -34,11 +34,11 @@ export class CocktailComponent implements OnInit {
 
     // so now we are going to a function that is called on the initialization of the class remember common module. this function is going to call another function we will write below. the void means that there is not a return for this function
     ngOnInit(): void {
-        this.listIngredients('negroni');
+        this.listDrinks('negroni');
     }
 
     // create the function structure
-    listIngredients(name: string) {
+    listDrinks(name: string) {
         // okay so this line it a doozy. first we use this to reference the class we are in, then we point that at the cocktailService variable from above. we then call searchByIngredient from the class that refrences and pass a name into it. we then subscribe to the data coming from the api
         this.cocktailService.searchByIngredient(name).subscribe({
             // Since the data is piped in response at a time the next respone that is sent from cocktailService is passed into the ingredients array or it gives it an empty array if empty
