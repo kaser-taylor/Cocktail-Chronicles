@@ -24,7 +24,7 @@ import { CocktailService } from '../../services/cocktail.service'
 
 // We then need to define the class. we are going to use the export keyword so it is available in other spots for export. and then we include implements OnInit. This causes angular to call the class when it is intialized on the lifecycle hook
 
-export class CocktailComponent implements OnInit {
+export class IngredientComponent implements OnInit {
     // now we need a container for the ingredients. cocktail db returns ingredients as an array of strings. because this is typescript we have to define the type lol thats why we do any []. remember this is an object so we use :
     drinks: any[] = [];
     // we have to remember to handle errors so we give a container for the errors
@@ -34,15 +34,18 @@ export class CocktailComponent implements OnInit {
 
     // so now we are going to a function that is called on the initialization of the class remember common module. this function is going to call another function we will write below. the void means that there is not a return for this function
     ngOnInit(): void {
-        this.listDrinks('negroni');
+        this.listDrinks('vodka');
     }
 
     // create the function structure
     listDrinks(name: string) {
         // okay so this line it a doozy. first we use this to reference the class we are in, then we point that at the cocktailService variable from above. we then call searchByIngredient from the class that refrences and pass a name into it. we then subscribe to the data coming from the api
         this.cocktailService.searchByIngredient(name).subscribe({
-            // Since the data is piped in response at a time the next respone that is sent from cocktailService is passed into the ingredients array or it gives it an empty array if empty
-            next: (response) => this.cocktailService = response.ingredients || [],
+            // Since the data is piped in response at a time the next respone that is sent from cocktailService is passed into the ingredients array or it gives it an empty array if empty. 
+            // Your bug here that you couldn't solve was you were assigning the response to the service. the line you used was
+            // next: (response) => this.cocktailService = response.drinks || []
+            // this is wrong because you were looking at assignment wrong this.cocktail service is then treated as a variable when the variable we want to assign the response to is this.drinks
+            next: (response) => this.drinks = response.drinks || [],
             // this is how it handles error messages
             error: (err) => this.errorMessage = err.message
         })
