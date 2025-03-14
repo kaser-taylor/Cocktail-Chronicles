@@ -1,0 +1,8 @@
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<ul>
+    <li *ngFor="let cocktail of cocktails">
+        <h3>{{ cocktail.strDrink }}</h3>
+        <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}">
+    </li>
+</ul>

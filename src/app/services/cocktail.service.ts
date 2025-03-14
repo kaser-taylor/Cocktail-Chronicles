@@ -17,5 +17,14 @@ export class CocktailService {
         );
     }
 
-    searchByIngredient(ingredient: string): Observable<any>
+    searchByIngredient(ingredient: string): Observable<any> {
+        return this.http.get(`${this.apiUrl}/filter.php?i=${ingredient}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    private handleError(error: any) {
+        console.error('API Error', error);
+        return throwError(() => new Error('Something went wrong. Please Try Again.'));
+    }
 }
