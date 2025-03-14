@@ -9,4 +9,13 @@ import { catchError } from 'rxjs/operators';
 export class CocktailService {
     private apiUrl = 'https://www.thecocktaildb.com/api/json/v1/1';
 
+    constructor(private http: HttpClient) {}
+
+    searchByName(name: string): Observable<any> {
+        return this.http.get(`${this.apiUrl}/search.php?s=${name}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    searchByIngredient(ingredient: string): Observable<any>
 }
