@@ -1,0 +1,14 @@
+<!-- first we set up a div for our search bar with a class for styling -->
+<div class="search-container">
+    <!-- the [ngModule] sets up the two way binding to the searchTerm variable in our components class which remember takes a string as an argument. it syncs the input fields text automatically with the variable in the sending class and updates upon ui changes -->
+     <!-- the keyup.enter listens for an enter key to be pressed to call the onsearch method to sent the term to the parent component of this component -->
+    <input 
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="search cocktails ..."
+        (keyup.enter)="onSearch()"
+        class="search-input"
+    >
+    <!-- this adds a button to submit the form that does a similar thing to the keyup.enter -->
+    <button (click)="onSearch()"> Search</button>
+</div>

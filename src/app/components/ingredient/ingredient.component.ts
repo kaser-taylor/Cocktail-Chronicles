@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // next we import the cocktail service that we made earlier. this lets us search for different things
 import { CocktailService } from '../../services/cocktail.service'
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 // then we define our component using the componenet decorator. Remember behind the scenes it will connect to a following class and this is why folder and file management is so important in angular. it makes things easier to debug and helps keep organized
 
@@ -15,7 +16,8 @@ import { CocktailService } from '../../services/cocktail.service'
     // then we do this standalone thing. I am not completely sure what this does but I think this is a discrepency between gpt training and modern angular versions
     standalone: true,
     // then we give the import list of things we will use in this component. we import the commonmodule on this one because we are going to use the ngig and ngfor to render indredient lists and cocktails
-    imports: [CommonModule],
+    // this is a new addition we are adding the search bar component and then we just pass in the searchTerm variable from this component to what was the name 
+    imports: [CommonModule, SearchBarComponent],
     // then we have to point it at an html file so it knows how to structure the component on the webpage
     templateUrl: './ingredient.component.html',
     // then we do the same for styling
@@ -34,13 +36,13 @@ export class IngredientComponent implements OnInit {
 
     // so now we are going to a function that is called on the initialization of the class remember common module. this function is going to call another function we will write below. the void means that there is not a return for this function
     ngOnInit(): void {
-        this.listDrinks('vodka');
+        this.listDrinks('');
     }
 
     // create the function structure
-    listDrinks(name: string) {
+    listDrinks(searchTerm: string) {
         // okay so this line it a doozy. first we use this to reference the class we are in, then we point that at the cocktailService variable from above. we then call searchByIngredient from the class that refrences and pass a name into it. we then subscribe to the data coming from the api
-        this.cocktailService.searchByIngredient(name).subscribe({
+        this.cocktailService.searchByIngredient(searchTerm).subscribe({
             // Since the data is piped in response at a time the next respone that is sent from cocktailService is passed into the ingredients array or it gives it an empty array if empty. 
             // Your bug here that you couldn't solve was you were assigning the response to the service. the line you used was
             // next: (response) => this.cocktailService = response.drinks || []
