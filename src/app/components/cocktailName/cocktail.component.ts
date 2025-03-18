@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CocktailService } from '../../services/cocktail.service';
-
+import { SearchService } from '../../services/search.service';
 
 @Component({
     selector: 'app-cocktail',
@@ -15,10 +15,13 @@ export class CocktailComponent implements OnInit {
     cocktails: any[] = [];
     errorMessage: string = '';
 
-    constructor(private cocktailService: CocktailService) {}
+    constructor(
+        private cocktailService: CocktailService,
+        private searchService: SearchService
+    ) {}
 
-    ngOnInit(): void {
-        this.searchCocktails('negroni');
+    ngOnInit() {
+        this.searchService.getSearchTerm().subscribe((term: string) => {this.searchCocktails(term)});
     }
 
     searchCocktails(name: string) {
