@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // next we import the cocktail service that we made earlier. this lets us search for different things
 import { CocktailService } from '../../services/cocktail.service'
-import { SearchBarComponent } from '../search-bar/search-bar.component';
+// import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { SearchService } from '../../services/search.service';
 
 // then we define our component using the componenet decorator. Remember behind the scenes it will connect to a following class and this is why folder and file management is so important in angular. it makes things easier to debug and helps keep organized
 
@@ -17,7 +18,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
     standalone: true,
     // then we give the import list of things we will use in this component. we import the commonmodule on this one because we are going to use the ngig and ngfor to render indredient lists and cocktails
     // this is a new addition we are adding the search bar component and then we just pass in the searchTerm variable from this component to what was the name 
-    imports: [CommonModule, SearchBarComponent],
+    imports: [CommonModule],
     // then we have to point it at an html file so it knows how to structure the component on the webpage
     templateUrl: './ingredient.component.html',
     // then we do the same for styling
@@ -32,11 +33,15 @@ export class IngredientComponent implements OnInit {
     // we have to remember to handle errors so we give a container for the errors
     errorMessage: string = '';
     // next we need to inject the cocktail service we wrote earlier into this class and we do that with a constructor we do it privately so its only accessible in this class. cocktailService1 is the variable name cocktailService is the class we want to inject
-    constructor(private cocktailService: CocktailService) {}
+    constructor(
+        private cocktailService: CocktailService,
+        private searchService: SearchService
+    ) {}
 
     // so now we are going to a function that is called on the initialization of the class remember common module. this function is going to call another function we will write below. the void means that there is not a return for this function
-    ngOnInit(): void {
-        this.listDrinks('');
+    ngOnInit() {
+        this.searchService.getSearchTerm().subscribe((term: string) =>
+        {this.listDrinks(term)});
     }
 
     // create the function structure
