@@ -17,5 +17,8 @@ export class CocktailCardService {
     // injects the http client and gives it the refrence name http
     constructor(private http: HttpClient){}
 
-    get
+    // creates a function that takes a cocktail id in the form of a string as an argument and 
+    getCocktailDetailsById(cocktailId: string): Observable<any> {
+        return this.http.get<any>(`${this.baseUrl}/lookup.php?i=${cocktailId}`);
+    }
 }
