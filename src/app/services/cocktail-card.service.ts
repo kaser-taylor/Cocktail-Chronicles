@@ -19,6 +19,8 @@ export class CocktailCardService {
 
     // creates a function that takes a cocktail id in the form of a string as an argument and 
     getCocktailDetailsById(cocktailId: string): Observable<any> {
+        // So what this does is create a get http request that accepts any type of response. this.http refers the http module that we injected into this service. its also important to remember that this.http.get returns an observable which is essentially a stream of data
         return this.http.get<any>(`${this.baseUrl}/lookup.php?i=${cocktailId}`);
     }
+
 }
