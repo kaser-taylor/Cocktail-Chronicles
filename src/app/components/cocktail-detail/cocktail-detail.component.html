@@ -1,1 +1,19 @@
-<p>cocktail-detail works!</p>
+<!-- the *ngIf means to only display it if cocktail exists -->
+<div *ngIf="cocktail"  class="cocktail-detail-card">
+    <h2>{{ cocktial.strDrink }}</h2>
+    <img [src]="cocktial.strDrinkThumb" alt="{{ cocktail.strDrink }}"/>
+
+    <p><strong>Category:</strong> {{ cocktial.strCategory }}</p>
+    <p><strong>Glass:</strong> {{ cocktail.strGlass }}</p>
+    <p><strong>Instructions:</strong> {{cocktail.strInstructions }}</p>
+
+    <div>
+        <h4>Ingredients</h4>
+        <ul>
+            <!-- ngFor creates a list element  with the properties below -->
+            <li *ngFor="let ingredient of getIngredientsList()">
+                {{ ingredient.ingredient }} - {{ ingredient.measure }}
+            </li>
+        </ul>
+    </div>
+</div>
