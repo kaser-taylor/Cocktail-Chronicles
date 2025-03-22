@@ -21,7 +21,7 @@ export class CocktailDetailComponent {
   constructor(
     // this listens to changes in the URL and lets you grab the query parameters. remember we need the cocktail ID to search for it
     private route: ActivatedRoute,
-    private cocktailcardservice: CocktailCardService
+    private cocktailcardservice: CocktailCardService,
   ) {}
 
 // this is a life cycle hook in angualr that runs automagically when the component loads

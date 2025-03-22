@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CocktailService } from '../../services/cocktail.service';
 import { SearchService } from '../../services/search.service';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-cocktail',
@@ -18,7 +19,8 @@ export class CocktailComponent implements OnInit {
 
     constructor(
         private cocktailService: CocktailService,
-        private searchService: SearchService
+        private searchService: SearchService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -26,9 +28,12 @@ export class CocktailComponent implements OnInit {
     }
 
     searchCocktails(name: string) {
+        this.router.navigate(['/'])
+
         this.cocktailService.searchByName(name).subscribe({
             next: (response) => this.cocktails = response.drinks || [],
-            error: (err) => this.errorMessage = err.message    
+            error: (err) =>{ this.errorMessage = err.message;
+            this.cocktails = []}
         })
     }
 }
