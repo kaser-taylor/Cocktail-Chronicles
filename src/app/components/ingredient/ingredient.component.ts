@@ -9,6 +9,8 @@ import { CocktailService } from '../../services/cocktail.service'
 // import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SearchService } from '../../services/search.service';
 import { RouterModule } from '@angular/router';
+// This enables us to set the route to blank on each search which will remove the detail card on the right
+import { Router } from '@angular/router'
 
 // then we define our component using the componenet decorator. Remember behind the scenes it will connect to a following class and this is why folder and file management is so important in angular. it makes things easier to debug and helps keep organized
 
@@ -36,7 +38,9 @@ export class IngredientComponent implements OnInit {
     // next we need to inject the cocktail service we wrote earlier into this class and we do that with a constructor we do it privately so its only accessible in this class. cocktailService1 is the variable name cocktailService is the class we want to inject
     constructor(
         private cocktailService: CocktailService,
-        private searchService: SearchService
+        private searchService: SearchService,
+        // injects the router changer url thingy
+        private router: Router,
     ) {}
 
     // so now we are going to a function that is called on the initialization of the class remember common module. this function is going to call another function we will write below. the void means that there is not a return for this function
@@ -47,6 +51,8 @@ export class IngredientComponent implements OnInit {
 
     // create the function structure
     listDrinks(searchTerm: string) {
+        // Changes the url to / so we can clear the right side detail component 
+        this.router.navigate(['/'])
         // okay so this line it a doozy. first we use this to reference the class we are in, then we point that at the cocktailService variable from above. we then call searchByIngredient from the class that refrences and pass a name into it. we then subscribe to the data coming from the api
         this.cocktailService.searchByIngredient(searchTerm).subscribe({
             // Since the data is piped in response at a time the next respone that is sent from cocktailService is passed into the ingredients array or it gives it an empty array if empty. 
@@ -55,7 +61,8 @@ export class IngredientComponent implements OnInit {
             // this is wrong because you were looking at assignment wrong this.cocktail service is then treated as a variable when the variable we want to assign the response to is this.drinks
             next: (response) => this.drinks = response.drinks || [],
             // this is how it handles error messages
-            error: (err) => this.errorMessage = err.message
+            error: (err) => {this.errorMessage = err.message;
+                this.drinks = []}
         })
     }
 }
