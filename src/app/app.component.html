@@ -6,10 +6,15 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<app-search-bar></app-search-bar>
-<app-cocktail></app-cocktail>
-<app-ingredient></app-ingredient>
-
+<app-header></app-header>
+<main class="main-container">
+<app-search-bar class="search-bar"></app-search-bar>
+<app-cocktail class="cocktails"></app-cocktail>
+<app-ingredient class="cocktails"></app-ingredient>
+<div class="cocktial-details">
+<router-outlet />
+</div>
+</main>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
@@ -19,4 +24,3 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<router-outlet />

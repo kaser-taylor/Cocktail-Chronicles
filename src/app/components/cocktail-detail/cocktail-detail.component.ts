@@ -1,14 +1,15 @@
 // this allows us to use the component decorator to pull in the css and html files and also gives us an initialization funtion we can call if we want 
 import { Component, OnInit } from '@angular/core';
 // So this enables angular routing. This does a lot of things but in this case it will let us pass the url from the url into our cocktail card service
-import { ActivatedRoute } from '@angular/router'; 
+import { ActivatedRoute, RouterModule } from '@angular/router'; 
 // imports the cocktail card service which pulls the recipe for the card
 import { CocktailCardService } from '../../services/cocktail-card.service';
+import { CommonModule } from '@angular/common';
 
 // Tells angular the following class is a component and to use this info for it
 @Component({
   selector: 'app-cocktail-detail',
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './cocktail-detail.component.html',
   styleUrl: './cocktail-detail.component.css'
 })

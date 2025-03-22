@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { CocktailService } from '../../services/cocktail.service'
 // import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SearchService } from '../../services/search.service';
+import { RouterModule } from '@angular/router';
 
 // then we define our component using the componenet decorator. Remember behind the scenes it will connect to a following class and this is why folder and file management is so important in angular. it makes things easier to debug and helps keep organized
 
@@ -18,7 +19,7 @@ import { SearchService } from '../../services/search.service';
     standalone: true,
     // then we give the import list of things we will use in this component. we import the commonmodule on this one because we are going to use the ngig and ngfor to render indredient lists and cocktails
     // this is a new addition we are adding the search bar component and then we just pass in the searchTerm variable from this component to what was the name 
-    imports: [CommonModule],
+    imports: [CommonModule, RouterModule],
     // then we have to point it at an html file so it knows how to structure the component on the webpage
     templateUrl: './ingredient.component.html',
     // then we do the same for styling

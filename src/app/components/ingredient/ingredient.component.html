@@ -1,12 +1,16 @@
 <!-- So now we need to define the html framework for our component. first we will handle a base case which will be an error message -->
  <!-- So it is interesting how *ngIf works. it basically checks if the output errorMessage is truthy or falsy. If one is rendered and it contains an error message then it is truthy and it stays if one doesnt it is falsy and it removes the div -->
- <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
  <!-- now we need a list of the drinks -->
-  <!-- I am assuming the ng for instigates a for loop for drink of drinks in the component and renderes the follow h3 and images that pull data from the drinks array -->
- <ul>
-    <li *ngFor="let drink of drinks">
-        <h3>{{ drink.strDrink }}</h3>
-        <img [src]="drink.strDrinkThumb" alt="{{ drink.strDrink }}">
-    </li>
- </ul>
+ <!-- I am assuming the ng for instigates a for loop for drink of drinks in the component and renderes the follow h3 and images that pull data from the drinks array -->
+
+    <ul>
+        <li *ngFor="let drink of drinks">
+          <!-- So this adds a router link on click that adds /cocktail and then the id of the drink the ingredient component supplies  -->
+        <div [routerLink]="['/cocktail', drink.idDrink]">
+          <h3>{{ drink.strDrink }}</h3>
+          <img [src]="drink.strDrinkThumb" alt="{{ drink.strDrink }}">
+        </div>
+        </li>
+    </ul>
