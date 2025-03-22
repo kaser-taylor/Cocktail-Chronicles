@@ -1,8 +1,12 @@
 <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
+
 <ul>
     <li *ngFor="let cocktail of cocktails">
+        <!-- So this adds a router link on click that adds /cocktail and then the id of the drink the cocktail name component supplies  -->
+        <div [routerLink]="['/cocktail', cocktail.idDrink]">
         <h3>{{ cocktail.strDrink }}</h3>
         <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}">
+        </div>
     </li>
 </ul>

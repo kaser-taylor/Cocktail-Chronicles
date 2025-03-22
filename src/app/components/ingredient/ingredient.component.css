@@ -1,0 +1,14 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+li {
+    width: 25%;
+}
+
+li img {
+    width: 25%;
+}

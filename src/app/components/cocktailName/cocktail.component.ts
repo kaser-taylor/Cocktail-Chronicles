@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CocktailService } from '../../services/cocktail.service';
 import { SearchService } from '../../services/search.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-cocktail',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterModule],
     templateUrl: './cocktail.component.html',
     styleUrls: ['./cocktail.component.css']
 })
