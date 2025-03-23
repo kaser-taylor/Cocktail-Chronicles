@@ -2,9 +2,9 @@
 
 <ul>
     <li *ngFor="let cocktail of cocktails">
-        <div [routerLink]="['/cocktail, drink.idDrink']">
-            <h3>{{drink.strDrink}}</h3>
-            <img [src]="drink.strDrinkThumb" alt="{{ drink.strDrink }}">
+        <div [routerLink]="['/cocktail', cocktail.idDrink]">
+            <h3>{{cocktail.strDrink}}</h3>
+            <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}">
         </div>
 
     </li>

@@ -57,10 +57,13 @@ export class ResultsComponent implements OnInit {
                 // so response checks if there even is one response.drinks checks if .drinks is part of response and .drinks.length checks if the length is greater than 0 then we can append to the array
                 if (response && response.drinks && response.drinks.length > 0) {
                     // we push it on the array so we can have ingredients and named cocktails
-                    this.cocktails.push(response.drinks)
+                    this.cocktails.push(...response.drinks)
                 }
-            }
+            },
 
+          error: (err) => {
+            console.error('error occurred:', err);
+          }
         })
 
         this.cocktailService.searchByIngredient(searchTerm).subscribe({
@@ -69,7 +72,7 @@ export class ResultsComponent implements OnInit {
                 // so response checks if there even is one response.drinks checks if .drinks is part of response and .drinks.length checks if the length is greater than 0 then we can append to the array
                 if (response && response.drinks && response.drinks.length > 0) {
                     // we push it on the array so we can have ingredients and named cocktails
-                    this.cocktails.push(response.drinks)
+                    this.cocktails.push(...response.drinks)
                 }
             }
 
