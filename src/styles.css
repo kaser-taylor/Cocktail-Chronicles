@@ -12,6 +12,6 @@ app-search-bar {
     grid-column: 2 / 3
 }
 
-app-cocktail, app-ingredient {
+app-results {
     grid-column: 1 / 2
 }
