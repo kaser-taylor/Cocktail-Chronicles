@@ -74,8 +74,11 @@ export class ResultsComponent implements OnInit {
                     // we push it on the array so we can have ingredients and named cocktails
                     this.cocktails.push(...response.drinks)
                 }
-            }
+            },
 
+            error: (err) => {
+                console.error('error occurred:', err);
+              }
         })
 
 
