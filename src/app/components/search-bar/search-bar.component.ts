@@ -5,22 +5,22 @@ import { FormsModule } from '@angular/forms';
 // So this will allow us to use our search service which basically created a mailing list for the search term
 import { SearchService } from '../../services/search.service';
 
-// Now we have out component 
+// Now we have out component
 @Component({
     selector: 'app-search-bar',
     templateUrl: './search-bar.component.html',
-    styleUrls: ['/.search-bar.component.css'],
+    styleUrls: ['./search-bar.component.css'],
     standalone: true,
     // this is a dependency injection that allows us to use the from module directly in the component
     imports: [FormsModule]
-    
+
 })
 
 // remember export allows us to use it in other parts of our project
 export class SearchBarComponent {
     // now we need to create the variable that holds the search term of the user. Remember that this is typescript so we have to declare the type
     searchTerm: string = '';
-    
+
     // so this enables the dependency injection of search service into this class. We will be using this to push searchTerm to the other components
     constructor(private searchService: SearchService) {}
 
