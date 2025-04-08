@@ -1,0 +1,5 @@
+color palette link
+https://coolors.co/palette/606c38-283618-fefae0-dda15e-bc6c25
+
+#adbb7f background n stuff
+#19220e text
