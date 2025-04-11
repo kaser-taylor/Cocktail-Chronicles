@@ -1,7 +1,7 @@
-// this allows us to use the component decorator to pull in the css and html files and also gives us an initialization funtion we can call if we want 
+// this allows us to use the component decorator to pull in the css and html files and also gives us an initialization funtion we can call if we want
 import { Component, OnInit } from '@angular/core';
 // So this enables angular routing. This does a lot of things but in this case it will let us pass the url from the url into our cocktail card service
-import { ActivatedRoute, RouterModule } from '@angular/router'; 
+import { ActivatedRoute, RouterModule } from '@angular/router';
 // imports the cocktail card service which pulls the recipe for the card
 import { CocktailCardService } from '../../services/cocktail-card.service';
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,7 @@ export class CocktailDetailComponent {
   // sets a variable to hold the data from our observable
   cocktail: any;
 
-  // runs these privately when a component is created and REMEMBER THIS IS HOW YOU INJECT DEPENDENCIES YOUVE DONE THIS A BUNCH 
+  // runs these privately when a component is created and REMEMBER THIS IS HOW YOU INJECT DEPENDENCIES YOUVE DONE THIS A BUNCH
   constructor(
     // this listens to changes in the URL and lets you grab the query parameters. remember we need the cocktail ID to search for it
     private route: ActivatedRoute,
@@ -45,18 +45,21 @@ export class CocktailDetailComponent {
           },
           // error is what displays if the observable or api fails
           error: (error) => {console.error('Error fetching cocktail details', error);},
-          
+
         }
-      
+
       );
 
     }
   }
 
+
+// we need to add logic to listen to search updates 
+
   getIngredientsList() {
     // Okay so this creates an array of objects {}[] in typescript we have to declare the types of the values coming from the object which is an ingredient: with a string data type and a measure: also with a string data type.
     const ingredients: { ingredient: string; measure: string}[] = []
-    
+
     for (let i = 1; i <= 15; i++) {
       // creates an ingredient variable that pulls from the cocktail object returned by the api. The api gives its response like this {'strIngredient1': 'tequila', 'strIngredient2': ''} since this object is one index we use one of those fancy strings that we can put variables in and incremement the number at the end. following that we declare a variable for measure that does the same thing
       const ingredient = this.cocktail[`strIngredient${i}`];
@@ -69,5 +72,5 @@ export class CocktailDetailComponent {
       }
     }
     return ingredients
-  } 
+  }
 }

@@ -2,7 +2,7 @@
 
 <ul>
     <li *ngFor="let cocktail of cocktails">
-        <div [routerLink]="['/cocktail', cocktail.idDrink]" class="cocktail-card">
+        <div [routerLink]="['/cocktail', cocktail.idDrink]" (click)=getCocktailID($event) class="cocktail-card">
             <h3>{{cocktail.strDrink}}</h3>
             <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}">
         </div>

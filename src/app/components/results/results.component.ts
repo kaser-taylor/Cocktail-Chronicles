@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { CocktailService } from '../../services/cocktail.service';
 // this is the search bar service that gives us the term
 import { SearchService } from '../../services/search.service';
+// this is so we can update the card on click
+import { CocktailCardService } from '../../services/cocktail-card.service';
 // so this allows us to use that router link thing that looks like [routerLink] in the html
 import { Router, RouterModule } from '@angular/router';
 
@@ -34,6 +36,8 @@ export class ResultsComponent implements OnInit {
         private cocktailService: CocktailService,
         // pulls search term from bar
         private searchService: SearchService,
+        //injects the dependency
+        private cocktailCardService: CocktailCardService,
         // lets us change router url
         private router: Router
     ) {}
@@ -42,6 +46,15 @@ export class ResultsComponent implements OnInit {
         // this . calls search service injection . calls get search term from search service . subscribes to the oberservable from cocktail api by calling listDrinks from it with the argument term from the search service
         this.searchService.getSearchTerm().subscribe((term: string) => {this.listDrinks(term)});
 }
+
+    cocktailID: string | null = null;
+
+    getCocktailID(event: MouseEvent) {
+        const cocktail = event.target as HTMLElement;
+        this.cocktailID = cocktail.getAttribute('id')
+        this.cocktailCardService.getCocktailDetailsById(this.cocktailID)
+    }
+
     // creating the function that gathers the item lists
     listDrinks(searchTerm: string) {
         // this changes the url to clear the search results and details from the last query
