@@ -1,1 +1,15 @@
-.angular/cache/
+# Dependencies
+node_modules/
+
+# Angular build output
+/dist
+/tmp
+/out-tsc
+
+# IDEs and editors
+.idea/
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
