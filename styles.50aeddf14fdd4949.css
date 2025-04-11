@@ -1,0 +1,1 @@
+*{margin:0;padding:0;box-sizing:border-box;overflow-y:scroll;font-family:Nunito}.main-container{display:grid;grid-template-columns:1fr 1fr}app-search-bar{grid-column:1 / 3}.cocktail-details{grid-column:2 / 3}app-results{grid-column:1 / 2}
