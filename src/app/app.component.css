@@ -14,3 +14,7 @@ body {
     width: 100vw;
     font-size: 20px
 }
+
+.results {
+    margin-top: 5%;
+}

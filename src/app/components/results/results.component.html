@@ -1,5 +1,6 @@
-<div *ngIf="errorMessage" class="error"> {{ errorMessage }} </div>
 
+<div *ngIf="errorMessage" class="error"> {{ errorMessage }} </div>
+<div *ngIf="cocktails.length > 0" class="scroll-box">
 <ul>
     <li *ngFor="let cocktail of cocktails">
         <div  (click)=displayCard(cocktail.idDrink) [id]="cocktail.idDrink" [routerLink]="['/cocktail', cocktail.idDrink]" class="cocktail-card">
@@ -9,3 +10,4 @@
 
     </li>
 </ul>
+</div>

@@ -13,6 +13,7 @@
     justify-content: space-evenly;
     width: 85%;
     border-radius: 10%;
+    margin-left: 5%;
 }
 
 .cocktail-detail-card img {
