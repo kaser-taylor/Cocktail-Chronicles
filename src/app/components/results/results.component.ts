@@ -47,13 +47,11 @@ export class ResultsComponent implements OnInit {
         this.searchService.getSearchTerm().subscribe((term: string) => {this.listDrinks(term)});
 }
 
-    cocktailID: string | null = null;
-
-
     displayCard(ID: string | null) {
         console.log('working');
         this.cocktailCardService.getCocktailDetailsById(ID)
     }
+
     // creating the function that gathers the item lists
     listDrinks(searchTerm: string) {
         // this changes the url to clear the search results and details from the last query

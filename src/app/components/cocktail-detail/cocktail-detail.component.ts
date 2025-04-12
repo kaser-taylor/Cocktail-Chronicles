@@ -18,8 +18,6 @@ export class CocktailDetailComponent {
 
   // runs these privately when a component is created and REMEMBER THIS IS HOW YOU INJECT DEPENDENCIES YOUVE DONE THIS A BUNCH
   constructor(
-    // this listens to changes in the URL and lets you grab the query parameters. remember we need the cocktail ID to search for it
-    private route: ActivatedRoute,
     private cocktailcardservice: CocktailCardService,
   ) {}
 
