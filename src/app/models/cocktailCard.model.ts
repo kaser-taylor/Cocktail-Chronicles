@@ -33,6 +33,8 @@ export interface CocktailFacts {
     strMeasure13: string | null;
     strMeasure14: string | null;
     strMeasure15: string | null;
+    strGlass: string | null;
+    strCategory: string | null;
 }
 export interface Drinks {
     drinks: CocktailFacts[];

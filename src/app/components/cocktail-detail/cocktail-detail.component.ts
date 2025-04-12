@@ -15,8 +15,6 @@ import { CocktailFacts } from '../../models/cocktailCard.model';
   styleUrl: './cocktail-detail.component.css'
 })
 export class CocktailDetailComponent {
-  // sets a variable to hold the data from our observable
-  cocktail: any;
 
   // runs these privately when a component is created and REMEMBER THIS IS HOW YOU INJECT DEPENDENCIES YOUVE DONE THIS A BUNCH
   constructor(
@@ -26,7 +24,7 @@ export class CocktailDetailComponent {
   ) {}
 
 
-  cocktailFacts: CocktailFacts | null = null;
+  cocktailFacts: CocktailFacts | null = null
 // this is a life cycle hook in angualr that runs automagically when the component loads
   ngOnInit(): void {
     this.cocktailcardservice.cocktail$.subscribe(info => {
@@ -35,50 +33,45 @@ export class CocktailDetailComponent {
         }
     })
 
-    // // grabs the id from the url this.route refers to the injected dependency in the constructor, .snapshot is a property of the dependency that contains a static snapshot of the route at the time of the request .paramMap is an object that provides access to route paratmesters. they are defined in the route with a colon: an example is /cocktial/:id. finally the .get gets the parameters from paramMap with the given variable in the call in this case id
-    // const cocktailId = this.route.snapshot.paramMap.get('id');
-
-    // // an if statement saying if there is a cocktailId then we do this
-    // if(cocktailId) {
-    //   // this calls our cocktail card servcice to get the cocktails by the id we snagged early and subsribes to the obervable of the service
-    //   this.cocktailcardservice.getCocktailDetailsById(cocktailId).subscribe(
-    //     {
-    //       // next means it happens if the api responds sucessfully and it uses the ternary operator to set cocktail = to the response and = to null if there are no drinks so the app doesn't crash
-    //       next: (response) => {this.cocktail = response.drinks ? response.drinks[0]: null;
-
-    //         // So basically if there is a response from the api it calls the get ingredients function
-    //         if (this.cocktail) {
-    //         this.getIngredientsList();
-    //         }
-    //       },
-    //       // error is what displays if the observable or api fails
-    //       error: (error) => {console.error('Error fetching cocktail details', error);},
-
-    //     }
-
-    //   );
-
-    // }
   }
 
 
-// we need to add logic to listen to search updates
+  ingredientsList() {
+    const ingredients: {ingredient: string | null; measure: string | null}[] = []
+    for (let i = 1; i <= 15; i ++) {
+    const ingredientKey = `strIngredient${i}` as keyof CocktailFacts;
+    const measureKey = `strMeasure${i}` as keyof CocktailFacts;
 
-  getIngredientsList() {
-    // Okay so this creates an array of objects {}[] in typescript we have to declare the types of the values coming from the object which is an ingredient: with a string data type and a measure: also with a string data type.
-    const ingredients: { ingredient: string; measure: string}[] = []
-
-    for (let i = 1; i <= 15; i++) {
-      // creates an ingredient variable that pulls from the cocktail object returned by the api. The api gives its response like this {'strIngredient1': 'tequila', 'strIngredient2': ''} since this object is one index we use one of those fancy strings that we can put variables in and incremement the number at the end. following that we declare a variable for measure that does the same thing
-      const ingredient = this.cocktail[`strIngredient${i}`];
-      const measure = this.cocktail[`strMeasure${i}`];
-      if (ingredient) {
-        ingredients.push({
-          ingredient,
-          measure: measure ? measure.trim() : ''
-        });
-      }
+    if (this.cocktailFacts) {
+    const ingredient = this.cocktailFacts[ingredientKey as keyof CocktailFacts];
+    const measure = this.cocktailFacts[measureKey as keyof CocktailFacts];
+    if (ingredient !== null) {
+    ingredients.push({ingredient, measure})
+            }
+        }
+        
     }
     return ingredients
-  }
 }
+}
+// we need to add logic to listen to search updates
+
+//   getIngredientsList() {
+//     // Okay so this creates an array of objects {}[] in typescript we have to declare the types of the values coming from the object which is an ingredient: with a string data type and a measure: also with a string data type.
+//     const ingredients: { ingredient: string; measure: string}[] = []
+
+//     for (let i = 1; i <= 15; i++) {
+//       // creates an ingredient variable that pulls from the cocktail object returned by the api. The api gives its response like this {'strIngredient1': 'tequila', 'strIngredient2': ''} since this object is one index we use one of those fancy strings that we can put variables in and incremement the number at the end. following that we declare a variable for measure that does the same thing
+//       const ingredient = this.cocktail[`strIngredient${i}`];
+//       const measure = this.cocktail[`strMeasure${i}`];
+//       if (ingredient) {
+//         ingredients.push({
+//           ingredient,
+//           measure: measure ? measure.trim() : ''
+//         });
+//       }
+//     }
+//     return ingredients
+//   }
+// }
+// }

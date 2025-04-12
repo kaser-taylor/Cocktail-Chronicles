@@ -1,17 +1,17 @@
 <!-- the *ngIf means to only display it if cocktail exists -->
-<div *ngIf="cocktail"  class="cocktail-detail-card">
-    <h2>{{ cocktail.strDrink }}</h2>
-    <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}"/>
+<div *ngIf="cocktailFacts"  class="cocktail-detail-card">
+    <h2>{{ cocktailFacts.strDrink }}</h2>
+    <img [src]="cocktailFacts.strDrinkThumb" alt="{{ cocktailFacts.strDrink }}"/>
     <div>
-    <p><strong>Category:</strong> {{ cocktail.strCategory }}</p>
-    <p><strong>Glass:</strong> {{ cocktail.strGlass }}</p>
-    <p><strong>Instructions:</strong> {{cocktail.strInstructions }}</p>
+    <p><strong>Category:</strong> {{ cocktailFacts.strCategory }}</p>
+    <p><strong>Glass:</strong> {{ cocktailFacts.strGlass }}</p>
+    <p><strong>Instructions:</strong> {{cocktailFacts.strInstructions }}</p>
 
     <div>
         <h4>Ingredients</h4>
         <ul>
             <!-- ngFor creates a list element  with the properties below -->
-            <li *ngFor="let ingredient of getIngredientsList()">
+            <li *ngFor="let ingredient of ingredientsList()">
                 {{ ingredient.ingredient }} - {{ ingredient.measure }}
             </li>
         </ul>
