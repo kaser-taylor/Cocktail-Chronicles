@@ -1,6 +1,6 @@
 color palette link
 https://coolors.co/palette/606c38-283618-fefae0-dda15e-bc6c25
 
-#adbb7f background n stuff
-#19220e text
+rgb(52, 30, 17) background n stuff
+rgb(234, 205, 168) text
 #fefae0 results card background

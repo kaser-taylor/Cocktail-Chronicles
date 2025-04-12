@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
   }
 
 .flex-container {
@@ -9,9 +10,31 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #adbb7f ;
+    gap: 16px
 }
 
+.title {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+}
 
+.title img {
+    width: 15%;
+    border-radius: 50%;
+}
 
+.description {
+    width: 50%;
+    /* margin-bottom: 16px; */
+}
+
+.text {
+    width: 65%;
+}
+
+a {
+    color: rgb(234, 205, 168);
+}
