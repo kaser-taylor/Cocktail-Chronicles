@@ -30,6 +30,7 @@ export class CocktailDetailComponent {
     this.cocktailcardservice.cocktail$.subscribe(info => {
         if (info) {
             this.cocktailFacts = info;
+            this.ingredientsList()
         }
     })
 
@@ -49,7 +50,7 @@ export class CocktailDetailComponent {
     ingredients.push({ingredient, measure})
             }
         }
-        
+
     }
     return ingredients
 }

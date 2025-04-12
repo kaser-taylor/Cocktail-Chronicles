@@ -49,12 +49,11 @@ export class ResultsComponent implements OnInit {
 
     cocktailID: string | null = null;
 
-    getCocktailID(event: MouseEvent) {
-        const cocktail = event.target as HTMLElement;
-        this.cocktailID = cocktail.getAttribute('id')
-        this.cocktailCardService.getCocktailDetailsById(this.cocktailID)
-    }
 
+    displayCard(ID: string | null) {
+        console.log('working');
+        this.cocktailCardService.getCocktailDetailsById(ID)
+    }
     // creating the function that gathers the item lists
     listDrinks(searchTerm: string) {
         // this changes the url to clear the search results and details from the last query

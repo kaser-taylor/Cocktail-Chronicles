@@ -31,13 +31,15 @@ export class CocktailCardService {
     getCocktailDetailsById(cocktailId: string | null = null): void {
         // So what this does is create a get http request that accepts any type of response. this.http refers the http module that we injected into this service. its also important to remember that this.http.get returns an observable which is essentially a stream of data
         // console.log('working');
-
+        console.log('working');
         this.http.get<Drinks>(`${this.baseUrl}/lookup.php?i=${cocktailId}`).pipe(
             map(response => {
+                console.log('working');
                 const cocktail = response.drinks[0];
                 this.cocktailInfo$.next(cocktail);
+                console.log(cocktail);
             })
-        )
+        ).subscribe()
 
         // return this.http.get<any>(`${this.baseUrl}/lookup.php?i=${cocktailId}`);
     }
